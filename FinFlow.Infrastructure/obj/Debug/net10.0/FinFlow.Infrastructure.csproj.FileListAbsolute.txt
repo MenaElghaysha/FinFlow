@@ -1,0 +1,38 @@
+C:\Users\Mena Elghaysha\OneDrive\Documents\Full Stack\FinFlow\FinFlow.Infrastructure\bin\Debug\net10.0\FinFlow.Infrastructure.deps.json
+C:\Users\Mena Elghaysha\OneDrive\Documents\Full Stack\FinFlow\FinFlow.Infrastructure\bin\Debug\net10.0\FinFlow.Infrastructure.runtimeconfig.json
+C:\Users\Mena Elghaysha\OneDrive\Documents\Full Stack\FinFlow\FinFlow.Infrastructure\bin\Debug\net10.0\FinFlow.Infrastructure.dll
+C:\Users\Mena Elghaysha\OneDrive\Documents\Full Stack\FinFlow\FinFlow.Infrastructure\bin\Debug\net10.0\FinFlow.Infrastructure.pdb
+C:\Users\Mena Elghaysha\OneDrive\Documents\Full Stack\FinFlow\FinFlow.Infrastructure\bin\Debug\net10.0\FinFlow.Application.dll
+C:\Users\Mena Elghaysha\OneDrive\Documents\Full Stack\FinFlow\FinFlow.Infrastructure\bin\Debug\net10.0\FinFlow.Domain.dll
+C:\Users\Mena Elghaysha\OneDrive\Documents\Full Stack\FinFlow\FinFlow.Infrastructure\bin\Debug\net10.0\FinFlow.Domain.pdb
+C:\Users\Mena Elghaysha\OneDrive\Documents\Full Stack\FinFlow\FinFlow.Infrastructure\bin\Debug\net10.0\FinFlow.Application.pdb
+C:\Users\Mena Elghaysha\OneDrive\Documents\Full Stack\FinFlow\FinFlow.Infrastructure\obj\Debug\net10.0\FinFlow.Infrastructure.csproj.AssemblyReference.cache
+C:\Users\Mena Elghaysha\OneDrive\Documents\Full Stack\FinFlow\FinFlow.Infrastructure\obj\Debug\net10.0\FinFlow.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Mena Elghaysha\OneDrive\Documents\Full Stack\FinFlow\FinFlow.Infrastructure\obj\Debug\net10.0\FinFlow.Infrastructure.AssemblyInfoInputs.cache
+C:\Users\Mena Elghaysha\OneDrive\Documents\Full Stack\FinFlow\FinFlow.Infrastructure\obj\Debug\net10.0\FinFlow.Infrastructure.AssemblyInfo.cs
+C:\Users\Mena Elghaysha\OneDrive\Documents\Full Stack\FinFlow\FinFlow.Infrastructure\obj\Debug\net10.0\FinFlow.Infrastructure.csproj.CoreCompileInputs.cache
+C:\Users\Mena Elghaysha\OneDrive\Documents\Full Stack\FinFlow\FinFlow.Infrastructure\obj\Debug\net10.0\FinFlow..4931391B.Up2Date
+C:\Users\Mena Elghaysha\OneDrive\Documents\Full Stack\FinFlow\FinFlow.Infrastructure\obj\Debug\net10.0\FinFlow.Infrastructure.dll
+C:\Users\Mena Elghaysha\OneDrive\Documents\Full Stack\FinFlow\FinFlow.Infrastructure\obj\Debug\net10.0\refint\FinFlow.Infrastructure.dll
+C:\Users\Mena Elghaysha\OneDrive\Documents\Full Stack\FinFlow\FinFlow.Infrastructure\obj\Debug\net10.0\FinFlow.Infrastructure.pdb
+C:\Users\Mena Elghaysha\OneDrive\Documents\Full Stack\FinFlow\FinFlow.Infrastructure\obj\Debug\net10.0\FinFlow.Infrastructure.genruntimeconfig.cache
+C:\Users\Mena Elghaysha\OneDrive\Documents\Full Stack\FinFlow\FinFlow.Infrastructure\obj\Debug\net10.0\ref\FinFlow.Infrastructure.dll
+C:\Dev\FinFlow\FinFlow.Infrastructure\bin\Debug\net10.0\FinFlow.Infrastructure.deps.json
+C:\Dev\FinFlow\FinFlow.Infrastructure\bin\Debug\net10.0\FinFlow.Infrastructure.runtimeconfig.json
+C:\Dev\FinFlow\FinFlow.Infrastructure\bin\Debug\net10.0\FinFlow.Infrastructure.dll
+C:\Dev\FinFlow\FinFlow.Infrastructure\bin\Debug\net10.0\FinFlow.Infrastructure.pdb
+C:\Dev\FinFlow\FinFlow.Infrastructure\bin\Debug\net10.0\FinFlow.Application.dll
+C:\Dev\FinFlow\FinFlow.Infrastructure\bin\Debug\net10.0\FinFlow.Domain.dll
+C:\Dev\FinFlow\FinFlow.Infrastructure\bin\Debug\net10.0\FinFlow.Domain.pdb
+C:\Dev\FinFlow\FinFlow.Infrastructure\bin\Debug\net10.0\FinFlow.Application.pdb
+C:\Dev\FinFlow\FinFlow.Infrastructure\obj\Debug\net10.0\FinFlow.Infrastructure.csproj.AssemblyReference.cache
+C:\Dev\FinFlow\FinFlow.Infrastructure\obj\Debug\net10.0\FinFlow.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+C:\Dev\FinFlow\FinFlow.Infrastructure\obj\Debug\net10.0\FinFlow.Infrastructure.AssemblyInfoInputs.cache
+C:\Dev\FinFlow\FinFlow.Infrastructure\obj\Debug\net10.0\FinFlow.Infrastructure.AssemblyInfo.cs
+C:\Dev\FinFlow\FinFlow.Infrastructure\obj\Debug\net10.0\FinFlow.Infrastructure.csproj.CoreCompileInputs.cache
+C:\Dev\FinFlow\FinFlow.Infrastructure\obj\Debug\net10.0\FinFlow..4931391B.Up2Date
+C:\Dev\FinFlow\FinFlow.Infrastructure\obj\Debug\net10.0\FinFlow.Infrastructure.dll
+C:\Dev\FinFlow\FinFlow.Infrastructure\obj\Debug\net10.0\refint\FinFlow.Infrastructure.dll
+C:\Dev\FinFlow\FinFlow.Infrastructure\obj\Debug\net10.0\FinFlow.Infrastructure.pdb
+C:\Dev\FinFlow\FinFlow.Infrastructure\obj\Debug\net10.0\FinFlow.Infrastructure.genruntimeconfig.cache
+C:\Dev\FinFlow\FinFlow.Infrastructure\obj\Debug\net10.0\ref\FinFlow.Infrastructure.dll

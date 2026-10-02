@@ -1,0 +1,22 @@
+C:\Users\Mena Elghaysha\OneDrive\Documents\Full Stack\FinFlow\FinFlow.Domain\bin\Debug\net10.0\FinFlow.Domain.deps.json
+C:\Users\Mena Elghaysha\OneDrive\Documents\Full Stack\FinFlow\FinFlow.Domain\bin\Debug\net10.0\FinFlow.Domain.dll
+C:\Users\Mena Elghaysha\OneDrive\Documents\Full Stack\FinFlow\FinFlow.Domain\bin\Debug\net10.0\FinFlow.Domain.pdb
+C:\Users\Mena Elghaysha\OneDrive\Documents\Full Stack\FinFlow\FinFlow.Domain\obj\Debug\net10.0\FinFlow.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Mena Elghaysha\OneDrive\Documents\Full Stack\FinFlow\FinFlow.Domain\obj\Debug\net10.0\FinFlow.Domain.AssemblyInfoInputs.cache
+C:\Users\Mena Elghaysha\OneDrive\Documents\Full Stack\FinFlow\FinFlow.Domain\obj\Debug\net10.0\FinFlow.Domain.AssemblyInfo.cs
+C:\Users\Mena Elghaysha\OneDrive\Documents\Full Stack\FinFlow\FinFlow.Domain\obj\Debug\net10.0\FinFlow.Domain.csproj.CoreCompileInputs.cache
+C:\Users\Mena Elghaysha\OneDrive\Documents\Full Stack\FinFlow\FinFlow.Domain\obj\Debug\net10.0\FinFlow.Domain.dll
+C:\Users\Mena Elghaysha\OneDrive\Documents\Full Stack\FinFlow\FinFlow.Domain\obj\Debug\net10.0\refint\FinFlow.Domain.dll
+C:\Users\Mena Elghaysha\OneDrive\Documents\Full Stack\FinFlow\FinFlow.Domain\obj\Debug\net10.0\FinFlow.Domain.pdb
+C:\Users\Mena Elghaysha\OneDrive\Documents\Full Stack\FinFlow\FinFlow.Domain\obj\Debug\net10.0\ref\FinFlow.Domain.dll
+C:\Dev\FinFlow\FinFlow.Domain\bin\Debug\net10.0\FinFlow.Domain.deps.json
+C:\Dev\FinFlow\FinFlow.Domain\bin\Debug\net10.0\FinFlow.Domain.dll
+C:\Dev\FinFlow\FinFlow.Domain\bin\Debug\net10.0\FinFlow.Domain.pdb
+C:\Dev\FinFlow\FinFlow.Domain\obj\Debug\net10.0\FinFlow.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Dev\FinFlow\FinFlow.Domain\obj\Debug\net10.0\FinFlow.Domain.AssemblyInfoInputs.cache
+C:\Dev\FinFlow\FinFlow.Domain\obj\Debug\net10.0\FinFlow.Domain.AssemblyInfo.cs
+C:\Dev\FinFlow\FinFlow.Domain\obj\Debug\net10.0\FinFlow.Domain.csproj.CoreCompileInputs.cache
+C:\Dev\FinFlow\FinFlow.Domain\obj\Debug\net10.0\FinFlow.Domain.dll
+C:\Dev\FinFlow\FinFlow.Domain\obj\Debug\net10.0\refint\FinFlow.Domain.dll
+C:\Dev\FinFlow\FinFlow.Domain\obj\Debug\net10.0\FinFlow.Domain.pdb
+C:\Dev\FinFlow\FinFlow.Domain\obj\Debug\net10.0\ref\FinFlow.Domain.dll

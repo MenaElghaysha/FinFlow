@@ -1,0 +1,8 @@
+<Solution>
+  <Folder Name="/FinFlow.Domain/">
+    <Project Path="FinFlow.Domain/FinFlow.Domain.csproj" />
+  </Folder>
+  <Project Path="FinFlow.API/FinFlow.API.csproj" />
+  <Project Path="FinFlow.Application/FinFlow.Application.csproj" />
+  <Project Path="FinFlow.Infrastructure/FinFlow.Infrastructure.csproj" />
+</Solution>
