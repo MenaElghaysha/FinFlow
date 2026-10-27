@@ -1,10 +1,11 @@
 using FinFlow.Domain.Entities.Customers;
 using FinFlow.Domain.Entities.Loans;
 using Microsoft.EntityFrameworkCore;
+using FinFlow.Application.Common.Interfaces;
 
 namespace FinFlow.Infrastructure.Persistence;
 
-public class FinFlowDbContext : DbContext
+public class FinFlowDbContext : DbContext, IFinFlowDbContext
 {
     public FinFlowDbContext(DbContextOptions<FinFlowDbContext> options)
         : base(options)

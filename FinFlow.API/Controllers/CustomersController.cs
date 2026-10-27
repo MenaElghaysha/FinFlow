@@ -1,37 +1,26 @@
-using FinFlow.Application.DTOs.Customers;
-using FinFlow.Application.Interfaces;
-using FluentValidation;
+using FinFlow.API.Requests;
+using FinFlow.Application.Customers.Commands.CreateCustomer;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FinFlow.API.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-public class CustomersController : ControllerBase
+public class CustomersController(IMediator mediator) : ControllerBase
 {
-    private readonly ICustomerService _customerService;
-    private readonly IValidator<CreateCustomerRequest> _validator;
-
-    public CustomersController(ICustomerService customerService, IValidator<CreateCustomerRequest> validator)
-    {
-        _customerService = customerService;
-        _validator = validator;
-    }
-
     [HttpPost]
-    public async Task<IActionResult> CreateCustomer([FromBody] CreateCustomerRequest request)
+    public async Task<IActionResult> Create([FromBody] CreateCustomerRequest request)
     {
-        var validationResult = await _validator.ValidateAsync(request);
-        if (!validationResult.IsValid)
-        {
-            return BadRequest(validationResult.Errors.Select(e => new
-            {
-                Field = e.PropertyName,
-                Error = e.ErrorMessage
-            }));
-        }
+        var command = new CreateCustomerCommand(
+            request.FullName,
+            request.Email,
+            request.NationalId,
+            request.MonthlyIncome
+        );
 
-        var customerId = await _customerService.CreateCustomerAsync(request);
-        return Ok(new { id = customerId });    }
+        var customerId = await mediator.Send(command);
+
+        return Ok(new { id = customerId });
+    }
 }
-
