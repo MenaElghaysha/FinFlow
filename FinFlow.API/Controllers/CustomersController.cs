@@ -1,5 +1,6 @@
 using FinFlow.API.Requests;
 using FinFlow.Application.Customers.Commands.CreateCustomer;
+using FinFlow.Application.Customers.Queries.GetAllCustomers;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -23,4 +24,11 @@ public class CustomersController(IMediator mediator) : ControllerBase
 
         return Ok(new { id = customerId });
     }
+
+    [HttpGet]
+public async Task<IActionResult> GetAll()
+{
+    var customers = await mediator.Send(new GetAllCustomersQuery());
+    return Ok(customers);
+}
 }

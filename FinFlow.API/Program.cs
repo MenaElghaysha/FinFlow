@@ -34,6 +34,9 @@ builder.Services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBeh
 builder.Services.AddProblemDetails();
 builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
 
+builder.Services.AddCors();  // Add CORS services in the application builder
+
+
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
@@ -44,6 +47,14 @@ if (app.Environment.IsDevelopment())
 
 app.UseExceptionHandler();
 app.UseHttpsRedirection();
+
+// CORS => بيحدد مين مسموح له يطلب بيانات من السيرفر
+app.UseCors(x => x
+    .AllowAnyOrigin()  // Allow requests from any origin "frontend"
+    .AllowAnyMethod()  // Allow any HTTP method (GET, POST, PUT, DELETE, etc.)
+    .AllowAnyHeader());  // Allow any HTTP headers in the request
+
+
 app.MapControllers();
 
 app.Run();
