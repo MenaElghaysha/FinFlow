@@ -27,9 +27,11 @@ export default function Customers() {
     try {
       // For now we only have Create, so we keep a local list
       // Later we can add GetAllCustomers endpoint
-      setLoading(false);
+    const data = await api("/api/customers");
+      setCustomers(data);
     } catch (err) {
       console.error(err);
+    } finally {
       setLoading(false);
     }
   };
@@ -60,10 +62,13 @@ export default function Customers() {
       setEmail("");
       setNationalId("");
       setMonthlyIncome("");
+      loadCustomers();  // Refresh the list of customers after creation
     } catch (err: any) {
       alert(err.message);
     }
   };
+
+  if (loading) return <p>Loading...</p>;
 
   return (
     <div>
@@ -110,12 +115,32 @@ export default function Customers() {
         </form>
       )}
 
-      {/* <div style={{ background: "white", borderRadius: 8, padding: 20 }}>
-        <p style={{ color: "#64748b" }}>
-          Note: Your backend currently has only Create Customer.  
-          After you create customers, they will appear here once we add a GetAll endpoint.
-        </p>
-      </div> */}
+      // Table of customers
+
+     <div style={{ background: "white", borderRadius: 8, padding: 20 }}>
+        <table style={{ width: "100%", borderCollapse: "collapse" }}>
+          <thead>
+            <tr style={{ textAlign: "left", borderBottom: "1px solid #e2e8f0" }}>
+              <th style={{ padding: 10 }}>Name</th>
+              <th>Email</th>
+              <th>National ID</th>
+              <th>Income</th>
+              <th>ID (copy for loans)</th>
+            </tr>
+          </thead>
+          <tbody>
+            {customers.map((c) => (
+              <tr key={c.id} style={{ borderBottom: "1px solid #f1f5f9" }}>
+                <td style={{ padding: 10 }}>{c.fullName}</td>
+                <td>{c.email}</td>
+                <td>{c.nationalId}</td>
+                <td>{c.monthlyIncome.toLocaleString()} EGP</td>
+                <td style={{ fontSize: 12, color: "#64748b" }}>{c.id}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 }
