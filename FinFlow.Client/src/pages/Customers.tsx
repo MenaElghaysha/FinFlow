@@ -16,6 +16,14 @@ export default function Customers() {
   const [customers, setCustomers] = useState<Customer[]>([]);
   const [loading, setLoading] = useState(true);
   const [showForm, setShowForm] = useState(false);
+  const [search, setSearch] = useState("");
+
+  //filterd list
+  const filteredCustomers = customers.filter((c) =>
+    c.fullName.toLowerCase().includes(search.toLowerCase()) ||
+    c.email.toLowerCase().includes(search.toLowerCase()) ||
+    c.nationalId.includes(search)
+  );
 
   // form state
   const [fullName, setFullName] = useState("");
@@ -142,18 +150,29 @@ export default function Customers() {
         </table>
       </div> */}
 
-
+<input
+  placeholder="Search by name..."
+  value={search}
+  onChange={(e) => setSearch(e.target.value)}
+  style={{ ...inputStyle, marginBottom: 16, maxWidth: 300 }}
+/>
         
 <div className="table-card">
+
   <div className="table-header">
+
     <div>
       <h2>Customers</h2>
       <p>View and manage registered customers</p>
     </div>
+
     <span className="customer-count">
       {customers.length} customers
     </span>
+
   </div>
+
+  
 
   <div className="table-scroll">
     <table className="customers-table">
@@ -168,7 +187,7 @@ export default function Customers() {
       </thead>
 
       <tbody>
-        {customers.map((c) => (
+        {filteredCustomers.map((c) => (
           <tr key={c.id}>
             <td>
               <span className="customer-name">

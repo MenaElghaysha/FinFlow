@@ -11,7 +11,12 @@ export async function api(path: string, options = {}) {
   });
   if (!res.ok) {
     const err = await res.json().catch(() => ({}));
-    throw new Error(err.detail || "Something went wrong");
+    // Better error message
+    if (err.errors) {
+      const messages = Object.values(err.errors).flat().join("\n");
+      throw new Error(messages);
+    }
+    throw new Error(err.detail ||err.title ||"Something went wrong");
   }
   if (res.status === 204) return null;  // No Content
   return res.json();

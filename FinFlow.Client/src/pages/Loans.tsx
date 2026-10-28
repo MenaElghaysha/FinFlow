@@ -13,6 +13,7 @@ type Installment = {
 type Loan = {
   id: string;
   customerId: string;
+  customerFullName: string;
   amount: number;
   durationInMonths: number;
   purpose: string;
@@ -20,6 +21,12 @@ type Loan = {
   createdAt: string;
   installments: Installment[];
 };
+
+type Customer = {
+  id: string;
+  fullName: string;
+};
+
 
 export default function Loans() {
 
@@ -34,6 +41,7 @@ export default function Loans() {
   const [amount, setAmount] = useState("");
   const [duration, setDuration] = useState("");
   const [purpose, setPurpose] = useState("");
+  const [customers, setCustomers] = useState<Customer[]>([]);
 
 
   const toggleInstallments = (id: string) => {
@@ -53,13 +61,28 @@ const handlePay = async (installmentId: string) => {
   // 2- Load loans from the API
   const loadLoans = async () => {
     try {
-      const data = await api("/api/loans");
-      setLoans(data);
-    } catch (err) {
-      console.error(err);
-    } finally {
-      setLoading(false);
-    }
+  const [loansData, customersData] = await Promise.all([
+      api("/api/loans"),
+      api("/api/customers"),
+    ]);
+    setCustomers(customersData);
+
+    const loansWithCustomerNames = loansData.map((loan: Loan) => ({
+      ...loan,
+      customerFullName:
+        customersData.find(
+          (customer: Customer) =>
+            customer.id.toLowerCase() === loan.customerId.toLowerCase()
+        )?.fullName ?? "Unknown Customer",
+    }));
+
+    setLoans(loansWithCustomerNames);
+  } catch (err) {
+    console.error(err);
+  } finally {
+    setLoading(false);
+  }
+  
   };
 
   // 3- useEffect to load loans from GET /api/loans when the component mounts
@@ -145,13 +168,15 @@ const handlePay = async (installmentId: string) => {
       <div style={{ background: "white", borderRadius: 8, padding: 20 }}>
         <table style={{ width: "100%", borderCollapse: "collapse" }}>
           <thead>
-            <tr style={{ textAlign: "left", borderBottom: "1px solid #e2e8f0" }}>
-              <th style={{ padding: 10 }}>Amount</th>
-              <th>Duration</th>
-              <th>Purpose</th>
-              <th>Status</th>
-              <th>Created</th>
-              <th>Actions</th>
+            <tr style={{ textAlign: "left", borderBottom: "1px solid #e2e8f0" , margin: 10}}>
+              <th style={{ padding: 10 , margin:10}}>Customer Full Name</th>
+              <th style={{ padding: 10 , margin:10}}>Customer ID</th>
+              <th style={{ padding: 10 , margin:10}}>Amount</th>
+              <th style={{ padding: 10 , margin:10}}>Duration</th>
+              <th style={{ padding: 10 , margin:10}}>Purpose</th>
+              <th style={{ padding: 10 , margin:10}}>Status</th>
+              <th style={{ padding: 10 , margin:10}} >Created</th>
+              <th style={{ padding: 10 , margin:10}}>Actions</th>
             </tr>
           </thead>
           <tbody>
@@ -160,13 +185,17 @@ const handlePay = async (installmentId: string) => {
             {/* // 7- Render the list of loans in a table with approve/reject buttons for pending loans */}
    {loans.map((loan) => (
   <React.Fragment key={loan.id}>
-    <tr style={{ borderBottom: "1px solid #f1f5f9" }}>
+    <tr style={{ borderBottom: "1px solid #f1f5f9" , margin: 10}}>
+
+                <td>{loan.customerFullName}</td>
+        <td>{loan.customerId}</td>
+
       <td style={{ padding: 10 }}>{loan.amount.toLocaleString()} EGP</td>
-      <td>{loan.durationInMonths} months</td>
+      <td >{loan.durationInMonths} months</td>
       <td>{loan.purpose}</td>
-      <td>{loan.status}</td>
-      <td>{new Date(loan.createdAt).toLocaleDateString()}</td>
-      <td>
+      <td style={{ padding: 10 , margin:10}} >{loan.status}</td>
+      <td style={{ padding: 10 , margin:10}} >{new Date(loan.createdAt).toLocaleDateString()}</td>
+      <td  style={{ display: "flex", gap: 2, padding: 5 , margin:10}} >
         {loan.status === "Pending" && (
           <>
             <button onClick={() => handleApprove(loan.id)} style={btnGreen}>Approve</button>
