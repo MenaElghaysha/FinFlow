@@ -115,12 +115,12 @@ export default function Customers() {
         </form>
       )}
 
-      // Table of customers
+      {/* // Table of customers */}
 
-     <div style={{ background: "white", borderRadius: 8, padding: 20 }}>
+     {/* <div style={{ background: "white", borderRadius: 8, padding: 20 }}>
         <table style={{ width: "100%", borderCollapse: "collapse" }}>
           <thead>
-            <tr style={{ textAlign: "left", borderBottom: "1px solid #e2e8f0" }}>
+            <tr style={{ textAlign: "center", borderBottom: "1px solid #e2e8f0" }}>
               <th style={{ padding: 10 }}>Name</th>
               <th>Email</th>
               <th>National ID</th>
@@ -140,7 +140,79 @@ export default function Customers() {
             ))}
           </tbody>
         </table>
-      </div>
+      </div> */}
+
+
+        
+<div className="table-card">
+  <div className="table-header">
+    <div>
+      <h2>Customers</h2>
+      <p>View and manage registered customers</p>
+    </div>
+    <span className="customer-count">
+      {customers.length} customers
+    </span>
+  </div>
+
+  <div className="table-scroll">
+    <table className="customers-table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>National ID</th>
+          <th>Monthly Income</th>
+          <th>Customer ID</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        {customers.map((c) => (
+          <tr key={c.id}>
+            <td>
+              <span className="customer-name">
+                {c.fullName}
+              </span>
+            </td>
+
+            <td className="email-cell">{c.email}</td>
+
+            <td className="national-id">
+              {c.nationalId}
+            </td>
+
+            <td>
+              <span className="income-value">
+                {c.monthlyIncome.toLocaleString("en-US")}
+              </span>
+              <span className="currency"> EGP</span>
+            </td>
+
+            <td>
+              <div className="id-cell">
+                <code title={c.id}>{c.id}</code>
+
+                <button
+                  className="copy-button"
+                  title="Copy customer ID"
+                  aria-label={`Copy ID for ${c.fullName}`}
+                  onClick={() =>
+                    navigator.clipboard.writeText(c.id)
+                  }
+                >
+                  Copy
+                </button>
+              </div>
+            </td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
     </div>
   );
 }

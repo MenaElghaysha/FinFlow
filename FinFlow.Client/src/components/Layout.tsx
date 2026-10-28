@@ -51,12 +51,13 @@ export default function Layout() {
             borderBottom: "1px solid #e2e8f0",
           }}
         >
-          <h1 style={{ margin: 0, fontSize: 20 }}>Loan Management</h1>
+          <h1 style={{ margin: 0, fontSize: 40  ,  }}>Loan Management</h1>
         </header>
 
         <main style={{ padding: 24 }}>
-          <Outlet /> // This is where the current page content will be rendered
-          based on the route
+          <Outlet /> 
+          {/* //  outlet : This is where the current page content will be rendered
+          //based on the route */}
         </main>
         
       </div>
