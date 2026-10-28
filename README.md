@@ -1,166 +1,196 @@
-# FinFlow — Loan Management System
+# FinFlow — Mini Loan Management System
 
-A full-stack Loan Management System built with **ASP.NET Core** (Clean Architecture + CQRS) and **React**.
+A Loan Management System built with **ASP.NET Core**, following **Clean Architecture** and **CQRS** principles.
+
+This project was created to practice building a maintainable .NET backend by clearly separating Domain, Application, Infrastructure, and API concerns.
 
 ---
 
 ## Features
 
-### Backend
 - Create Customers
 - Create Loan Applications
 - Approve / Reject Loans
 - Auto-generate Installments on Approval
 - Pay Installments
-- FluentValidation + MediatR Pipeline
-- Global Exception Handling (ProblemDetails)
+- FluentValidation with MediatR pipeline
+- Global Exception Handling with ProblemDetails
 - Entity Framework Core + SQLite
-
-### Frontend (React)
-- Dashboard with real-time statistics
-- Customers list + Create form + Search
-- Loans list with Approve / Reject actions
-- Installments view + Pay action
-- Customer name displayed in Loans table
 
 ---
 
 ## Architecture
 
+The solution is divided into four main layers:
+
 ```
-┌────────────────────┐
-│   React Client     │
-│  (FinFlow.Client)  │
-└─────────┬──────────┘
-          │ HTTP
-          ▼
-┌────────────────────┐
-│       API          │
-│   Controllers      │
-└─────────┬──────────┘
-          │
-          ▼
-┌────────────────────┐
-│    Application     │
-│ Commands / Queries │
-│   + Validation     │
-└─────────┬──────────┘
-          │
-          ▼
-┌────────────────────┐
-│      Domain        │
-│     Entities       │
-└────────────────────┘
-          ▲
-          │
-┌─────────┴──────────┐
-│   Infrastructure   │
-│  EF Core + SQLite  │
-└────────────────────┘
+┌──────────────────────────────┐
+│             API              │
+│ Controllers / Requests       │
+└──────────────┬───────────────┘
+               │
+               ▼
+┌──────────────────────────────┐
+│         Application          │
+│ Commands / Queries /         │
+│ Validation / Behaviors       │
+└──────────────┬───────────────┘
+               │
+               ▼
+┌──────────────────────────────┐
+│            Domain            │
+│     Entities + Enums         │
+└──────────────────────────────┘
+               ▲
+               │
+┌──────────────┴───────────────┐
+│       Infrastructure         │
+│ EF Core / SQLite / Data      │
+└──────────────────────────────┘
 ```
 
----
-
-## Project Structure
+### Project Structure
 
 ```
 FinFlow/
-├── FinFlow.API/               → Web API + Controllers
-├── FinFlow.Application/       → CQRS (Commands, Queries, Behaviors)
-├── FinFlow.Domain/            → Entities
-├── FinFlow.Infrastructure/    → EF Core + DbContext
-└── FinFlow.Client/            → React Frontend (Vite)
+├── FinFlow.API/
+│   ├── Controllers/
+│   ├── Exceptions/
+│   ├── Requests/
+│   └── Program.cs
+│
+├── FinFlow.Application/
+│   ├── Behaviors/
+│   ├── Common/
+│   │   └── Interfaces/
+│   ├── Customers/
+│   │   └── Commands/
+│   └── Loans/
+│       ├── Commands/
+│       │   ├── CreateLoanApplication/
+│       │   ├── ApproveLoan/
+│       │   ├── RejectLoan/
+│       │   └── PayInstallment/
+│       ├── Queries/
+│       │   ├── GetAllLoans/
+│       │   └── GetLoanById/
+│       └── DTOs/
+│
+├── FinFlow.Domain/
+│   └── Entities/
+│       ├── Customers/
+│       └── Loans/
+│
+└── FinFlow.Infrastructure/
+    └── Persistence/
+        └── FinFlowDbContext.cs
 ```
 
 ---
 
-## Technologies
+## CQRS + MediatR
 
-### Backend
-- .NET 10
-- ASP.NET Core Web API
-- Entity Framework Core
-- SQLite
-- MediatR
-- FluentValidation
-- Clean Architecture + CQRS
+All write operations are **Commands** and all read operations are **Queries**.
 
-### Frontend
-- React + TypeScript
-- Vite
-- React Router
-- Fetch API
+The API controllers never call the database or business logic directly.  
+They only send commands/queries through MediatR:
+
+```csharp
+var loanId = await mediator.Send(command);
+```
+
+### Commands
+- `CreateCustomerCommand`
+- `CreateLoanApplicationCommand`
+- `ApproveLoanCommand`
+- `RejectLoanCommand`
+- `PayInstallmentCommand`
+
+### Queries
+- `GetAllLoansQuery`
+- `GetLoanByIdQuery`
 
 ---
 
-## Getting Started
+## Validation
 
-### 1. Backend
+Validation is handled automatically using **FluentValidation** + a MediatR `ValidationBehavior`.
 
-```bash
-# Restore & run
-dotnet restore
-dotnet run --project FinFlow.API
-```
+Validation runs **before** the handler is executed.
 
-API will run on: `http://localhost:5155`  
-Swagger: `http://localhost:5155/swagger`
+---
 
-### 2. Frontend
+## Exception Handling
 
-```bash
-cd FinFlow.Client
-npm install
-npm run dev
-```
+The API uses a global exception handler with `ProblemDetails`:
 
-Frontend will run on: `http://localhost:5173`
-
-> Make sure the `API_URL` in `src/api/client.ts` matches your backend port.
+- `ValidationException` → 400
+- `KeyNotFoundException` → 404
+- `InvalidOperationException` → 400
+- Other exceptions → 500
 
 ---
 
 ## API Endpoints
 
 ### Customers
-| Method | Endpoint            | Description          |
-|--------|---------------------|----------------------|
-| GET    | /api/customers      | Get all customers    |
-| POST   | /api/customers      | Create a customer    |
+| Method | Endpoint              | Description        |
+|--------|-----------------------|--------------------|
+| POST   | /api/customers        | Create a customer  |
 
 ### Loans
-| Method | Endpoint                            | Description              |
-|--------|-------------------------------------|--------------------------|
-| GET    | /api/loans                          | Get all loans            |
-| GET    | /api/loans/{id}                     | Get loan by ID           |
-| POST   | /api/loans                          | Create loan application  |
-| PUT    | /api/loans/{id}/approve             | Approve a loan           |
-| PUT    | /api/loans/{id}/reject              | Reject a loan            |
-| PUT    | /api/loans/installments/{id}/pay    | Pay an installment       |
+| Method | Endpoint                          | Description              |
+|--------|-----------------------------------|--------------------------|
+| POST   | /api/loans                        | Create loan application  |
+| GET    | /api/loans                        | Get all loans            |
+| GET    | /api/loans/{id}                   | Get loan by ID           |
+| PUT    | /api/loans/{id}/approve           | Approve a loan           |
+| PUT    | /api/loans/{id}/reject            | Reject a loan            |
+| PUT    | /api/loans/installments/{id}/pay  | Pay an installment       |
 
 ---
 
-## How to Use
+## Technologies
 
-1. Create a **Customer**
-2. Copy the Customer ID
-3. Create a **Loan Application** using that ID
-4. **Approve** the loan → Installments are generated automatically
-5. Click **Show Installments** → Mark them as paid
+- .NET 10
+- ASP.NET Core Web API
+- Entity Framework Core
+- SQLite
+- MediatR
+- FluentValidation
+- ProblemDetails
+- Clean Architecture + CQRS
+
+---
+
+## Getting Started
+
+### Prerequisites
+- .NET 10 SDK
+
+### Run the project
+
+```bash
+dotnet restore
+dotnet run --project FinFlow.API
+```
+
+The API will start and Swagger will be available at:
+
+```
+https://localhost:xxxx/swagger
+```
 
 ---
 
 ## Future Improvements
 
 - Authentication & Authorization
-- Dropdown to select Customer when creating a Loan
 - Pagination & Filtering
 - Unit & Integration Tests
+- Soft Delete
+- Logging
 - Docker support
-- Better UI (Tailwind / component library)
+- CI/CD pipeline
 
----
 
-## Author
-
-**Mena H. Elghaysha**
